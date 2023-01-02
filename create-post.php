@@ -1,42 +1,9 @@
 <?php
-
-// se connecter à la DB
-
-//PDO
-
-$adresseServeurMySQL = "localhost";
-$nomDeDatabase = "blog";
-$username = "bloggy";
-$password = "]LhDx@cl6[0tZhxT";
-
-$pdo = new PDO("mysql:host=$adresseServeurMySQL;dbname=$nomDeDatabase",
-                    $username,
-                    $password,
-                    [
-                            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-                    ]
-);
-
-$request = $pdo->query("SELECT * FROM posts");
-
-$posts = $request->fetchAll();
-
- //print_r($posts);
-
-
-
-$input = "rien";
-
-if( !empty($_GET['carotte']) ){
-
-    $input = $_GET['carotte'];
-}
-
+//faire tout le nécéssaire pour récupérer le contenu de l'article depuis $_POST
+//et le sauvegarder dans la DB à l'aide de PDO
 
 
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -60,7 +27,7 @@ if( !empty($_GET['carotte']) ){
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="create-post.php">New Post</a>
+                    <a class="nav-link" href="#">Link</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -87,24 +54,17 @@ if( !empty($_GET['carotte']) ){
 
 <div class="container mt-5">
 
-    <?php foreach ($posts as $post) :  ?>
+    <h1>nouveau post</h1>
 
-            <div class="post mt-3">
-                <h3><?= $post["title"] ?></h3>
-                <p><?= $post["content"] ?></p>
-            </div>
+    <form action="" method="post">
+        <input type="text" name="title" id="">
+        <input type="text" name="content" id="">
+        <input type="submit" value="Envoyer">
+    </form>
 
-    <?php endforeach; ?>
 </div>
 
-<form method="POST">
 
-    <input type="text" name="carotte">
-    <input type="submit" value="Envoyer">
-    
-</form>
-
-<h2>truc écrit dans l'input : <?= $input ?></h2>
 
 </body>
 </html>
