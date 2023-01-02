@@ -97,7 +97,7 @@ if( !empty($_GET['carotte']) ){
     <?php endforeach; ?>
 </div>
 
-<form method="POST">
+<form method="GET">
 
     <input type="text" name="carotte">
     <input type="submit" value="Envoyer">
