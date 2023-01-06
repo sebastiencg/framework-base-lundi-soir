@@ -33,5 +33,9 @@ render("posts/post", [
     "pageTitle"=>$post['title']
 ]);
 }
+$bidule = "du texte"; $truc = "autrechose";
+
+
+
 ?>
 
