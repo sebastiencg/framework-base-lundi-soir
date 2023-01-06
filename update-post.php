@@ -1,39 +1,25 @@
 <?php
 
-// se connecter à la DB
+$id = null;
 
-//PDO
-$adresseServeurMySQL = "localhost";
-$nomDeDatabase = "blog";
-$username = "bloggy";
-$password = "]LhDx@cl6[0tZhxT";
-
-$pdo = new PDO("mysql:host=$adresseServeurMySQL;dbname=$nomDeDatabase",
-                    $username,
-                    $password,
-                    [
-                            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-                    ]
-);
-
-$request = $pdo->query("SELECT * FROM posts");
-
-$posts = $request->fetchAll();
-
- //print_r($posts);
-
-
-
-$input = "rien";
-
-if( !empty($_GET['carotte']) ){
-
-    $input = $_GET['carotte'];
+if(!empty($_GET['id']) && ctype_digit($_GET['id']) ){
+    $id = $_GET['id'];
 }
+if($id){
 
+    require_once('pdo.php');
 
+   $query= $pdo->prepare('SELECT * FROM posts WHERE id=:id');
 
+   $query->execute(["id"=>$id]);
+
+  $post = $query->fetch();
+
+   if(!$post){
+       header("Location: index.php");
+   }
+
+}
 ?>
 
 <!doctype html>
@@ -86,15 +72,15 @@ if( !empty($_GET['carotte']) ){
 
 <div class="container mt-5">
 
-    <?php foreach ($posts as $post) :  ?>
 
-            <div class="post mt-3">
-                <h3><?= $post["title"] ?></h3>
-                <p><?= $post["content"] ?></p>
-                <a href="post.php?id=<?= $post['id'] ?>" class="btn btn-success">Lire</a>
-            </div>
 
-    <?php endforeach; ?>
+    <form action="">
+        <input type="text" name="titleUpdate" value="<?= $post['title'] ?>" id="">
+        <input type="text" name="contentUpdate" value="<?= $post['content'] ?>" id="">
+        <button type="submit" class="btn btn-success">update</button>
+
+    </form>
+
 </div>
 
 

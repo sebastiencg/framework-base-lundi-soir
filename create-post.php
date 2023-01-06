@@ -30,6 +30,7 @@ if($title && $content){
 
     $request = $pdo->prepare('INSERT INTO posts SET title = :title, content = :content');
 
+
     $request->execute([
             "title"=> $title,
             "content"=>$content
@@ -93,7 +94,7 @@ if($title && $content){
 
     <h1>nouveau post</h1>
 
-    <form action="" method="post">
+    <form action="create-post.php" method="post">
         <input type="text" name="title" id="">
         <input type="text" name="content" id="">
         <input type="submit" value="Envoyer">
