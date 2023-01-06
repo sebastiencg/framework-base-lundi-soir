@@ -14,15 +14,15 @@ if($id){
 
     $post = $query->fetch();
 
-    if(!$post){
-        header("Location: index.php");
+    if($post){
+        $query = $pdo->prepare('DELETE FROM posts WHERE id = :id') ;
+
+        $query->execute(['id'=>$id]);
+
     }
 
-   $query = $pdo->prepare('DELETE FROM posts WHERE id = :id') ;
 
-    $query->execute(['id'=>$id]);
-
-    header('Location: index.php');
+    redirect('index.php');
 
 
 }

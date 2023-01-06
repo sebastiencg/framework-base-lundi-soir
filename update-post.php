@@ -1,5 +1,5 @@
 <?php
-
+require_once ('librairies/tools.php');
 $id = null;
 
 if(!empty($_GET['id']) && ctype_digit($_GET['id']) ){
@@ -16,7 +16,7 @@ if($id){
   $post = $query->fetch();
 
    if(!$post){
-       header("Location: index.php");
+       redirect("index.php");
    }
 
 }
@@ -43,16 +43,11 @@ if($content && $id && $title){
         'title'=>$title
     ]);
 
-    header('Location: post.php?id='.$id);
+    redirect('post.php?id='.$id);
 
 
 
 }
-ob_start();
-require_once ('templates/posts/update.html.php');
-
-$pageContent = ob_get_clean();
-
-require_once ('templates/base.html.php');
+render("posts/update", ["post"=>$post,"pageTitle"=>"modifier le post"]);
 
 ?>

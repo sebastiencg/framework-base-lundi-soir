@@ -6,7 +6,7 @@ if(!empty($_GET['id']) && ctype_digit($_GET['id']) ){
     $id = $_GET['id'];
 }
 if($id){
-
+    require_once ('librairies/tools.php');
     require_once('pdo.php');
 
    $query= $pdo->prepare('SELECT * FROM posts WHERE id=:id');
@@ -15,18 +15,23 @@ if($id){
 
   $post = $query->fetch();
 
-  // $comments = quelquechose
+  $requeteComments = $pdo->prepare('SELECT * FROM comments WHERE post_id=:post_id');
+
+   $requeteComments->execute([
+       "post_id"=>$id
+   ]);
+
+   $comments = $requeteComments->fetchAll();
 
    if(!$post){
-       header("Location: index.php");
+       redirect('index.php');
    }
 
-    ob_start();
-    require_once ('templates/posts/post.html.php');
-
-    $pageContent = ob_get_clean();
-
-    require_once ('templates/base.html.php');
+render("posts/post", [
+    "post"=>$post,
+    "comments"=>$comments,
+    "pageTitle"=>$post['title']
+]);
 }
 ?>
 

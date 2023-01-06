@@ -8,4 +8,24 @@
 <a href="index.php" class="btn btn-success">retour</a>
 </div>
 
-// il faut faire un foreach sur la variable comments
+
+    <?php foreach ($comments as $comment): ?>
+
+        <hr>
+
+        <p><strong><?= $comment['content'] ?></strong></p>
+        <a href="#" class="btn btn-danger"><strong>X</strong></a>
+        <a href="#" class="btn btn-warning"><strong>update</strong></a>
+
+        <hr>
+        <hr>
+
+<?php endforeach; ?>
+
+<hr>
+
+<form method="post" class="form" action="create-comment.php">
+    <input class="form-control"  type="text" name="content" placeholder="add a comment">
+    <input name="id" class="form-control" type="hidden" value="<?= $post['id'] ?>">
+    <button class="btn btn-success" type="submit">Send</button>
+</form>
