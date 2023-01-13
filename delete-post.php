@@ -1,7 +1,7 @@
 <?php
 
-//penser aux bons require_once
-require_once('core/Database/PDOMySQL.php');
+require_once('core/Entity/Post.php');
+require_once ('core/App/Response.php');
 
 $id = null;
 
@@ -12,20 +12,21 @@ if($id){
 
 //trouver le post pour verifier qu'il existe
 
+    $entityPost = new \Entity\Post();
+
+    $post = $entityPost->findById($id);
+
+
 
     if($post){
 
-        //deplacer dans un endroit mieux la methode de suppression et la déclencher
-
-//        $query = $pdo->prepare('DELETE FROM posts WHERE id = :id') ;
-//
-//        $query->execute(['id'=>$id]);
+            $entityPost->delete($id);
 
     }
 
      // reparer ca la juste en dessous
 
-    redirect('index.php');
+    App\Response::redirect();
 
 
 }

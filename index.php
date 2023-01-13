@@ -7,7 +7,7 @@ $postEntity = new \Entity\Post();
 
 
 
-$posts = $postEntity->findAllPosts();
+$posts = $postEntity->findAll();
 
  //print_r($posts);
 

@@ -1,7 +1,7 @@
 <?php
 require_once ('core/App/Response.php');
 require_once ('core/App/View.php');
-require_once ('core/Database/PDOMySQL.php');
+require_once ('core/Entity/Post.php');
 
 
 
@@ -18,16 +18,9 @@ if( !empty($_POST['content'])){
 
 if($title && $content){
 
-// déplacer ce truc la au bon endroit et le déclencher
+    $entityPost = new \Entity\Post();
+    $entityPost->insert($title, $content);
 
-//
-//    $request = $pdo->prepare('INSERT INTO posts SET title = :title, content = :content');
-//
-//
-//    $request->execute([
-//            "title"=> $title,
-//            "content"=>$content
-//    ]);
 
     App\Response::redirect();
 

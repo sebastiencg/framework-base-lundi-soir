@@ -1,34 +1,22 @@
 <?php
 
 namespace Entity;
-require_once ('core/Database/PDOMySQL.php');
-class Post
+require_once ('core/Entity/AbstractEntity.php');
+class Post extends AbstractEntity
 {
 
-    private \PDO $pdo;
-
-     public function __construct(){
-         $this->pdo = \Database\PDOMySQL::getPdo();
-     }
-
-    public function findAllPosts()
-    {
+    protected $tableName = "posts";
 
 
-        $request = $this->pdo->query("SELECT * FROM posts");
 
-        $posts = $request->fetchAll();
-        return $posts;
-    }
+    public function insert(string $title, string $content){
+            $request = $this->pdo->prepare('INSERT INTO posts SET title = :title, content = :content');
 
 
-    public function findPostById($id){
-        $query= $this->pdo->prepare('SELECT * FROM posts WHERE id=:id');
-
-        $query->execute(["id"=>$id]);
-
-        $post = $query->fetch();
-        return $post;
+                $request->execute([
+                        "title"=> $title,
+                        "content"=>$content
+                ]);
     }
 
 

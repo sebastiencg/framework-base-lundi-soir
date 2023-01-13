@@ -9,11 +9,26 @@
 </div>
 
 
+    <?php foreach ($comments as $comment): ?>
+
+        <hr>
+
+
+
+
+        <p><strong><?php var_dump($comment['content']) ?></strong></p>
+        <a href="delete-comment.php?id=<?= $comment['id'] ?>" class="btn btn-danger"><strong>X</strong></a>
+        <a href="#" class="btn btn-warning"><strong>update</strong></a>
+
+        <hr>
+        <hr>
+
+            <?php endforeach; ?>
 
 <hr>
 
 <form method="post" class="form" action="create-comment.php">
     <input class="form-control"  type="text" name="content" placeholder="add a comment">
-    <input name="id" class="form-control" type="hidden" value="<?= $post['id'] ?>">
+    <input name="post_id" class="form-control" type="hidden" value="<?= $post['id'] ?>">
     <button class="btn btn-success" type="submit">Send</button>
 </form>
