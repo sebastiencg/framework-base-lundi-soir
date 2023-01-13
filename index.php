@@ -1,15 +1,17 @@
 <?php
 
-require_once ('librairies/tools.php');
-require_once ('pdo.php');
+require_once ('core/App/View.php');
+require_once ('core/Entity/Post.php');
 
-$request = $pdo->query("SELECT * FROM posts");
+$postEntity = new \Entity\Post();
 
-$posts = $request->fetchAll();
+
+
+$posts = $postEntity->findAllPosts();
 
  //print_r($posts);
 
-render("posts/index", [
+App\View::render("posts/index", [
     "posts"=>$posts,
     "pageTitle"=>"accueil du blog"
 ]);

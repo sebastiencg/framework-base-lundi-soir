@@ -1,5 +1,7 @@
 <?php
-require_once ('librairies/tools.php');
+require_once ('core/App/Response.php');
+require_once ('core/App/View.php');
+require_once ('core/Database/PDOMySQL.php');
 
 
 
@@ -16,20 +18,20 @@ if( !empty($_POST['content'])){
 
 if($title && $content){
 
+// déplacer ce truc la au bon endroit et le déclencher
 
-require_once ('pdo.php');
+//
+//    $request = $pdo->prepare('INSERT INTO posts SET title = :title, content = :content');
+//
+//
+//    $request->execute([
+//            "title"=> $title,
+//            "content"=>$content
+//    ]);
 
-    $request = $pdo->prepare('INSERT INTO posts SET title = :title, content = :content');
-
-
-    $request->execute([
-            "title"=> $title,
-            "content"=>$content
-    ]);
-
-    redirect('index.php');
+    App\Response::redirect();
 
 }
-render("posts/create", ["pageTitle"=>"nouveau post"]);
+App\View::render("posts/create", ["pageTitle"=>"nouveau post"]);
 
 ?>

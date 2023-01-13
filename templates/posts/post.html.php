@@ -9,18 +9,6 @@
 </div>
 
 
-    <?php foreach ($comments as $comment): ?>
-
-        <hr>
-
-        <p><strong><?= $comment['content'] ?></strong></p>
-        <a href="#" class="btn btn-danger"><strong>X</strong></a>
-        <a href="#" class="btn btn-warning"><strong>update</strong></a>
-
-        <hr>
-        <hr>
-
-<?php endforeach; ?>
 
 <hr>
 

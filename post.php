@@ -1,39 +1,33 @@
 <?php
 
+require_once ('core/App/Response.php');
+require_once ('core/App/View.php');
+require_once ('core/Database/PDOMySQL.php');
+require_once ('core/Entity/Post.php');
+
+
 $id = null;
 
 if(!empty($_GET['id']) && ctype_digit($_GET['id']) ){
     $id = $_GET['id'];
 }
+
+
 if($id){
-    require_once ('librairies/tools.php');
-    require_once('pdo.php');
 
-   $query= $pdo->prepare('SELECT * FROM posts WHERE id=:id');
+    $postEntity = new \Entity\Post();
 
-   $query->execute(["id"=>$id]);
-
-  $post = $query->fetch();
-
-  $requeteComments = $pdo->prepare('SELECT * FROM comments WHERE post_id=:post_id');
-
-   $requeteComments->execute([
-       "post_id"=>$id
-   ]);
-
-   $comments = $requeteComments->fetchAll();
+ $post = $postEntity->findPostById($id);
 
    if(!$post){
-       redirect('index.php');
+       App\Response::redirect();
    }
 
-render("posts/post", [
-    "post"=>$post,
-    "comments"=>$comments,
-    "pageTitle"=>$post['title']
-]);
+App\View::render("posts/post", [
+                            "post"=>$post,
+                            "pageTitle"=>$post['title']
+                        ]);
 }
-$bidule = "du texte"; $truc = "autrechose";
 
 
 
