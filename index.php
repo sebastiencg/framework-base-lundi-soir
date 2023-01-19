@@ -1,13 +1,10 @@
 <?php
+require_once ('core/App/autoloading.php');
 
-require_once ('core/Controllers/PostController.php');
-
-$controller = new \Controllers\PostController();
-
-$controller->index();
+\App\Kernel::run();
 
 
-
+//http://localhost/bloggyMcBlog/?type=post&action=show&id=2
 
 
 
