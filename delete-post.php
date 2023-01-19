@@ -20,7 +20,7 @@ if($id){
 
     if($post){
 
-            $entityPost->delete($id);
+            $entityPost->delete($post);
 
     }
 

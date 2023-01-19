@@ -1,4 +1,7 @@
 <?php
+
+use Entity\Post;
+
 require_once ('core/App/Response.php');
 require_once ('core/App/View.php');
 require_once ('core/Entity/Post.php');
@@ -18,8 +21,15 @@ if( !empty($_POST['content'])){
 
 if($title && $content){
 
+    $post = new Post();
+
+    $post->setTitle($title);
+    $post->setContent($content);
+
+
+
     $entityPost = new \Entity\Post();
-    $entityPost->insert($title, $content);
+    $entityPost->insert($post);
 
 
     App\Response::redirect();

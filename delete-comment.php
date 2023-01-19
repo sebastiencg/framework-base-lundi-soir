@@ -15,7 +15,7 @@ if($id){
     $comment = $entityComment->findById($id);
 
     if($comment){
-        $entityComment->delete($id);
+        $entityComment->delete($comment);
     }
 
     App\Response::redirect();

@@ -18,8 +18,8 @@ class AbstractEntity
 
         $request = $this->pdo->query("SELECT * FROM $this->tableName");
 
-        $posts = $request->fetchAll();
-        return $posts;
+        $items = $request->fetchAll(\PDO::FETCH_CLASS,get_class($this));
+        return $items;
     }
 
     public function findById(int $id){
@@ -27,14 +27,15 @@ class AbstractEntity
 
         $query->execute(["id"=>$id]);
 
-        $comment = $query->fetch();
-        return $comment;
+        $item = $query->fetch(\PDO::FETCH_CLASS,get_class($this));
+        return $item;
     }
 
 
-    public function delete(int $id){
+
+    public function delete(object $object){
         $query = $this->pdo->prepare("DELETE FROM $this->tableName WHERE id = :id") ;
 
-        $query->execute(['id'=>$id]);
+        $query->execute(['id'=>$object->getId()]);
     }
 }
