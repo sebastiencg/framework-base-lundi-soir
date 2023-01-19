@@ -1,9 +1,13 @@
 <?php
 
 namespace Entity;
+
+
 require_once ('core/Entity/AbstractEntity.php');
+
 class Post extends AbstractEntity
 {
+
 
     protected $tableName = "posts";
 
