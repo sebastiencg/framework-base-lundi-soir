@@ -1,7 +1,7 @@
 
 <?php foreach ($posts as $post) :  ?>
 
-    <?php var_dump($post); ?>
+
     <div class="post mt-3">
         <h3><?= $post->getTitle() ?></h3>
         <p><?= $post->getContent() ?></p>

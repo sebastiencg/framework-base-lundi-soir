@@ -25,9 +25,15 @@ if($post_id && $content){
     if(!$post){ App\Response::redirect();   }
 
     $entityComment = new \Entity\Comment();
-    $entityComment->insert($post_id, $content);
 
-    App\Response::redirect("post.php?id=$post_id");
+    $comment = new \Entity\Comment();
+    $comment->setContent($content);
+    $comment->setPostId($post_id);
+
+
+    $entityComment->insert($comment);
+
+    App\Response::redirect("post.php?id=".$post->getId());
 
 
 

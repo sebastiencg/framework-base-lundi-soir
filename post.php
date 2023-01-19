@@ -27,13 +27,14 @@ if($id){
    }
 
    $commentEntity = new \Entity\Comment();
-   $comments =  $commentEntity->findAllByPostId($post['id']);
+
+   $comments =  $commentEntity->findAllByPost($post);
 
 
 App\View::render("posts/post", [
                             "post"=>$post,
                             "comments"=>$comments,
-                            "pageTitle"=>$post['title']
+                            "pageTitle"=>$post->getTitle()
                         ]);
 }
 

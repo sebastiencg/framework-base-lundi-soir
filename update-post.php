@@ -1,5 +1,8 @@
 <?php
-require_once ('librairies/tools.php');
+
+require_once "core/Entity/Post.php";
+require_once "core/App/View.php";
+require_once "core/App/Response.php";
 $id = null;
 
 if(!empty($_GET['id']) && ctype_digit($_GET['id']) ){
@@ -7,19 +10,16 @@ if(!empty($_GET['id']) && ctype_digit($_GET['id']) ){
 }
 if($id){
 
-    require_once('pdo.php');
+    $entityPost = new \Entity\Post();
 
-   $query= $pdo->prepare('SELECT * FROM posts WHERE id=:id');
-
-   $query->execute(["id"=>$id]);
-
-  $post = $query->fetch();
+    $post = $entityPost->findById($id);
 
    if(!$post){
-       redirect("index.php");
+       App\Response::redirect();
    }
 
 }
+
 $idUpdate = null;
 $content = null;
 $title = null;
@@ -34,20 +34,24 @@ if(!empty($_POST['contentUpdate'])){
 
 if($content && $id && $title){
 
-    require_once('pdo.php');
+   $entityPost = new \Entity\Post();
 
-    $requete = $pdo->prepare('UPDATE posts SET content = :content, title= :title WHERE id = :id');
-    $requete->execute([
-            'id'=>$id,
-            'content'=>$content,
-        'title'=>$title
-    ]);
+   $post = $entityPost->findById($id);
 
-    redirect('post.php?id='.$id);
+   $post->setTitle($title);
+   $post->setContent($content);
+
+   $entityPost->update($post);
+
+
+
+    App\Response::redirect('post.php?id='.$post->getId());
 
 
 
 }
-render("posts/update", ["post"=>$post,"pageTitle"=>"modifier le post"]);
+App\View::render("posts/update",
+    ["post"=>$post,
+    "pageTitle"=>"modifier le post"]);
 
 ?>

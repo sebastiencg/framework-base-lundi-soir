@@ -27,7 +27,9 @@ class AbstractEntity
 
         $query->execute(["id"=>$id]);
 
-        $item = $query->fetch(\PDO::FETCH_CLASS,get_class($this));
+        $query->setFetchMode(\PDO::FETCH_CLASS,get_class($this));
+
+        $item = $query->fetch();
         return $item;
     }
 

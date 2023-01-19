@@ -12,12 +12,13 @@ if(!empty($_GET['id']) && ctype_digit($_GET['id']) ){
 if($id){
 
     $entityComment = new \Entity\Comment();
+
     $comment = $entityComment->findById($id);
 
     if($comment){
         $entityComment->delete($comment);
     }
 
-    App\Response::redirect();
+    App\Response::redirect('post.php?id='.$comment->getPostId());
 
 }

@@ -1,9 +1,9 @@
 
 <div class="post mt-3">
-        <h3><?= $post['title'] ?></h3>
-<p><?= $post['content'] ?></p>
-<a href="delete-post.php?id=<?= $post['id'] ?>" class="btn btn-danger">supprimer</a>
-<a href="update-post.php?id=<?= $post['id'] ?>" class="btn btn-warning">Update</a>
+        <h3><?= $post->getTitle() ?></h3>
+<p><?= $post->getContent() ?></p>
+<a href="delete-post.php?id=<?= $post->getId() ?>" class="btn btn-danger">supprimer</a>
+<a href="update-post.php?id=<?= $post->getId() ?>" class="btn btn-warning">Update</a>
 
 <a href="index.php" class="btn btn-success">retour</a>
 </div>
@@ -16,8 +16,8 @@
 
 
 
-        <p><strong><?php var_dump($comment['content']) ?></strong></p>
-        <a href="delete-comment.php?id=<?= $comment['id'] ?>" class="btn btn-danger"><strong>X</strong></a>
+        <p><strong><?= $comment->getContent() ?></strong></p>
+        <a href="delete-comment.php?id=<?= $comment->getId() ?>" class="btn btn-danger"><strong>X</strong></a>
         <a href="#" class="btn btn-warning"><strong>update</strong></a>
 
         <hr>
@@ -29,6 +29,6 @@
 
 <form method="post" class="form" action="create-comment.php">
     <input class="form-control"  type="text" name="content" placeholder="add a comment">
-    <input name="post_id" class="form-control" type="hidden" value="<?= $post['id'] ?>">
+    <input name="post_id" class="form-control" type="hidden" value="<?= $post->getId() ?>">
     <button class="btn btn-success" type="submit">Send</button>
 </form>
