@@ -11,6 +11,7 @@ if(!empty($_GET['id']) && ctype_digit($_GET['id']) ){
 }
 if($id){
 
+
     $entityComment = new \Entity\Comment();
 
     $comment = $entityComment->findById($id);
