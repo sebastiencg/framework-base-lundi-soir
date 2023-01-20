@@ -3,13 +3,18 @@
 namespace Entity;
 
 
+use Attributes\Table;
+use Attributes\TargetRepository;
+use Repositories\PostRepository;
 
+#[Table(name: "posts")]
+#[TargetRepository(repositoryName: PostRepository::class)]
 
 class Post extends AbstractEntity
 {
 
 
-    protected $tableName = "posts";
+
 
     private int $id;
     private string $title;
@@ -23,7 +28,6 @@ class Post extends AbstractEntity
     {
         return $this->id;
     }
-
 
 
     /**
@@ -58,23 +62,6 @@ class Post extends AbstractEntity
         $this->content = $content;
     }
 
-    public function insert(Post $post){
-        $request = $this->pdo->prepare('INSERT INTO posts SET title = :title, content = :content');
 
-
-        $request->execute([
-            "title"=> $post->getTitle(),
-            "content"=>$post->getContent()
-        ]);
-    }
-
-    public function update(Post $post){
-        $requete = $this->pdo->prepare('UPDATE posts SET content = :content, title= :title WHERE id = :id');
-        $requete->execute([
-            'id'=>$post->getId(),
-            'content'=>$post->getContent(),
-            'title'=>$post->getTitle()
-        ]);
-    }
 
 }

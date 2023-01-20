@@ -5,6 +5,8 @@
 <a href="index.php?type=post&action=remove&id=<?= $post->getId() ?>" class="btn btn-danger">supprimer</a>
 <a href="index.php?type=post&action=change&id=<?= $post->getId() ?>" class="btn btn-warning">Update</a>
 
+
+
 <a href="index.php" class="btn btn-success">retour</a>
 </div>
 

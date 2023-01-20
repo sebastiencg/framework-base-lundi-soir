@@ -37,7 +37,11 @@ class CommentController extends AbstractController
 
             $this->defaultEntity->insert($comment);
 
-            return $this->redirect("?type=post&action=show&id={$post->getId()}");
+            return $this->redirect([
+                "type"=>"post",
+                "action"=>"show",
+                "id"=>$post->getId()
+            ]);
 
 
 
@@ -63,7 +67,11 @@ class CommentController extends AbstractController
 
         $this->defaultEntity->delete($comment);
 
-        return $this->redirect("?type=post&action=show&id={$comment->getPostId()}");
+        return $this->redirect([
+            "type"=>"post",
+            "action"=>"show",
+            "id"=>$comment->getPostId()
+        ]);
 
 
     }
@@ -93,7 +101,11 @@ class CommentController extends AbstractController
 
             $this->defaultEntity->update($comment);
 
-            return $this->redirect("?type=post&action=show&id={$comment->getPostId()}");
+            return $this->redirect([
+                "type"=>"post",
+                "action"=>"show",
+                "id"=>$comment->getPostId()
+            ]);
 
         }
 

@@ -4,9 +4,12 @@ namespace Controllers;
 
 
 
+use Attributes\DefaultEntity;
 use Entity\Comment;
 use Entity\Post;
+use Repositories\PostRepository;
 
+#[DefaultEntity(entityName: Post::class)]
 class PostController extends AbstractController
 {
 
@@ -17,8 +20,9 @@ class PostController extends AbstractController
     public function index(){
 
 
+
         return $this->render("posts/index", [
-            "posts"=>$this->defaultEntity->findAll(),
+            "posts"=>$this->repository->findAll(),
             "pageTitle"=>"accueil du blog"
         ]);
 
@@ -38,13 +42,13 @@ class PostController extends AbstractController
 
 
 
-        $post = $this->defaultEntity->findById($id);
+        $post = $this->repository->findById($id);
 
         if(!$post){ return $this->redirect();}
 
-        $commentEntity = new Comment();
+        $commentRepository = $this->getRepository(Comment::class);
 
-        $comments = $commentEntity->findAllByPost($post);
+        $comments = $commentRepository->findAllByPost($post);
 
        return $this->render("posts/post", [
             "post"=>$post,
@@ -66,12 +70,12 @@ class PostController extends AbstractController
         }
         if($id){
 
-            $post = $this->defaultEntity->findById($id);
+            $post = $this->repository->findById($id);
         }
 
             if($post){
 
-                $this->defaultEntity->delete($post);
+                $this->repository->delete($post);
 
             }
 
@@ -108,7 +112,7 @@ class PostController extends AbstractController
 
 
 
-            $this->defaultEntity->insert($post);
+            $this->repository->insert($post);
 
 
             return $this->redirect();
@@ -127,7 +131,7 @@ class PostController extends AbstractController
 
 
 
-            $post = $this->defaultEntity->findById($id);
+            $post = $this->repository->findById($id);
 
             if(!$post){
                 return $this->redirect();
@@ -151,16 +155,19 @@ class PostController extends AbstractController
 
 
 
-            $post = $this->defaultEntity->findById($id);
+            $post = $this->repository->findById($id);
 
             $post->setTitle($title);
             $post->setContent($content);
 
-            $this->defaultEntity->update($post);
+            $this->repository->update($post);
 
+            return $this->redirect([
+                "type"=>"post",
+                "action"=>"show",
+                "id"=>$post->getId()
+            ]);
 
-
-            return $this->redirect('post.php?id='.$post->getId());
 
 
 
