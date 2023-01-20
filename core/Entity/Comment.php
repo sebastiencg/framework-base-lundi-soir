@@ -2,9 +2,13 @@
 
 namespace Entity;
 
-require_once ('core/Entity/AbstractEntity.php');
+use Attributes\Table;
+use Attributes\TargetRepository;
+use Repositories\CommentRepository;
 
 
+#[Table(name: "comments")]
+#[TargetRepository(repositoryName: CommentRepository::class)]
 class Comment extends AbstractEntity
 {
 

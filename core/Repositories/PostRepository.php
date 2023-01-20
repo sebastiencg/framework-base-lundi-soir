@@ -13,7 +13,7 @@ class PostRepository extends AbstractRepository
 
 
 
-    public function insert(Post $post){
+    public function insert(\Entity\Post $post){
         $request = $this->pdo->prepare("INSERT INTO {$this->tableName} SET title = :title, content = :content");
 
 
@@ -23,7 +23,7 @@ class PostRepository extends AbstractRepository
         ]);
     }
 
-    public function update(Post $post){
+    public function update(\Entity\Post $post){
         $requete = $this->pdo->prepare("UPDATE {$this->tableName} SET content = :content, title= :title WHERE id = :id");
         $requete->execute([
             'id'=>$post->getId(),

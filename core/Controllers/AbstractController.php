@@ -11,15 +11,13 @@ class AbstractController
 {
 
 
-    protected object $defaultEntity;
 
-    protected string $defaultEntityName;
 
     protected $repository;
 
     public function __construct()
     {
-        $this->defaultEntity = new $this->defaultEntityName();
+
 
         $this->repository = $this->getRepository($this->resolveDefaultEntityName());
     }

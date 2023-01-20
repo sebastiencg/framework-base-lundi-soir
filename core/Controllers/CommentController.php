@@ -2,12 +2,14 @@
 
 namespace Controllers;
 
+use Attributes\DefaultEntity;
 use Entity\Comment;
 use Entity\Post;
 
+#[DefaultEntity(entityName: Comment::class)]
+
 class CommentController extends AbstractController
 {
-    protected string $defaultEntityName = Comment::class;
 
     public function create(){
 
@@ -25,7 +27,7 @@ class CommentController extends AbstractController
 
             $postEntity = new Post();
 
-            $post = $postEntity->findById($postId);
+            $post = $this->getRepository(Post::class)->findById($postId);
 
             if(!$post){
                 return $this->redirect();
@@ -35,7 +37,7 @@ class CommentController extends AbstractController
             $comment->setContent($content);
             $comment->setPostId($postId);
 
-            $this->defaultEntity->insert($comment);
+            $this->repository->insert($comment);
 
             return $this->redirect([
                 "type"=>"post",
@@ -46,8 +48,7 @@ class CommentController extends AbstractController
 
 
         }
-
-
+        return $this->redirect();
 
     }
 
@@ -61,11 +62,11 @@ class CommentController extends AbstractController
 
         if(!$id){  return $this->redirect(); }
 
-        $comment = $this->defaultEntity->findById($id);
+        $comment = $this->repository->findById($id);
 
         if(!$comment){  return $this->redirect(); }
 
-        $this->defaultEntity->delete($comment);
+        $this->repository->delete($comment);
 
         return $this->redirect([
             "type"=>"post",
@@ -93,13 +94,13 @@ class CommentController extends AbstractController
 
         if($id && $content){
 
-            $comment = $this->defaultEntity->findById($id);
+            $comment = $this->repository->findById($id);
 
             if(!$comment){  return $this->redirect(); }
 
             $comment->setContent($content);
 
-            $this->defaultEntity->update($comment);
+            $this->repository->update($comment);
 
             return $this->redirect([
                 "type"=>"post",
@@ -118,7 +119,7 @@ class CommentController extends AbstractController
 
         if(!$id){  return $this->redirect(); }
 
-        $comment = $this->defaultEntity->findById($id);
+        $comment = $this->repository->findById($id);
 
         if(!$comment){  return $this->redirect(); }
 

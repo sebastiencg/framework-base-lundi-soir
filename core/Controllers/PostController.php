@@ -7,13 +7,10 @@ namespace Controllers;
 use Attributes\DefaultEntity;
 use Entity\Comment;
 use Entity\Post;
-use Repositories\PostRepository;
 
 #[DefaultEntity(entityName: Post::class)]
 class PostController extends AbstractController
 {
-
-    protected string $defaultEntityName = Post::class;
 
 
 
@@ -47,6 +44,7 @@ class PostController extends AbstractController
         if(!$post){ return $this->redirect();}
 
         $commentRepository = $this->getRepository(Comment::class);
+
 
         $comments = $commentRepository->findAllByPost($post);
 
