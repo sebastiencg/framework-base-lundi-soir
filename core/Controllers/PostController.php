@@ -4,6 +4,7 @@ namespace Controllers;
 
 
 
+use App\File;
 use Attributes\DefaultEntity;
 use Entity\Comment;
 use Entity\Post;
@@ -102,10 +103,16 @@ class PostController extends AbstractController
 
         if($title && $content){
 
+            $image = new File('postImage');
+            if($image->isImage()){
+                $image->upload();
+            }
+
             $post = new Post();
 
             $post->setTitle($title);
             $post->setContent($content);
+            $post->setImage($image->getName());
 
 
 

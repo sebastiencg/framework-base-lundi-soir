@@ -14,12 +14,13 @@ class PostRepository extends AbstractRepository
 
 
     public function insert(\Entity\Post $post){
-        $request = $this->pdo->prepare("INSERT INTO {$this->tableName} SET title = :title, content = :content");
+        $request = $this->pdo->prepare("INSERT INTO {$this->tableName} SET title = :title, content = :content, image= :image");
 
 
         $request->execute([
             "title"=> $post->getTitle(),
-            "content"=>$post->getContent()
+            "content"=>$post->getContent(),
+            "image"=>$post->getImage()
         ]);
     }
 

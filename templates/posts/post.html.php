@@ -1,6 +1,9 @@
 
 <div class="post mt-3">
+    
         <h3><?= $post->getTitle() ?></h3>
+
+    <img src="http://localhost/bloggyMcBlog/images/<?= $post->getImage() ?>" alt="">
 <p><?= $post->getContent() ?></p>
 <a href="index.php?type=post&action=remove&id=<?= $post->getId() ?>" class="btn btn-danger">supprimer</a>
 <a href="index.php?type=post&action=change&id=<?= $post->getId() ?>" class="btn btn-warning">Update</a>

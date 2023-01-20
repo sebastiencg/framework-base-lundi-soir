@@ -20,6 +20,8 @@ class Post extends AbstractEntity
     private string $title;
     private string $content;
 
+    private string $image;
+
 
     /**
      * @return int
@@ -62,6 +64,21 @@ class Post extends AbstractEntity
         $this->content = $content;
     }
 
+    /**
+     * @return string
+     */
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage(string $image): void
+    {
+        $this->image = $image;
+    }
 
 
 }
