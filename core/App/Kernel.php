@@ -17,9 +17,10 @@ class Kernel
         $controllerName = "\Controllers\\".$type."Controller";
 
 
-
         $controller = new $controllerName();
+
         $controller->$action();
+
 
 
         }

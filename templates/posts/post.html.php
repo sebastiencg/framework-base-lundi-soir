@@ -17,8 +17,8 @@
 
 
         <p><strong><?= $comment->getContent() ?></strong></p>
-        <a href="index.php?type=comment&action=remove?id=<?= $comment->getId() ?>" class="btn btn-danger"><strong>X</strong></a>
-        <a href="#" class="btn btn-warning"><strong>update</strong></a>
+        <a href="index.php?type=comment&action=remove&id=<?= $comment->getId() ?>" class="btn btn-danger"><strong>X</strong></a>
+        <a href="index.php?type=comment&action=change&id=<?= $comment->getId() ?>" class="btn btn-warning"><strong>update</strong></a>
 
         <hr>
         <hr>

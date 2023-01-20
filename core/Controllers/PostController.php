@@ -2,11 +2,6 @@
 
 namespace Controllers;
 
-require_once ('core/App/View.php');
-require_once ('core/Entity/Post.php');
-require_once ('core/App/Response.php');
-require_once ('core/Entity/Comment.php');
-require_once ('core/Controllers/AbstractController.php');
 
 
 use Entity\Comment;
@@ -20,6 +15,7 @@ class PostController extends AbstractController
 
 
     public function index(){
+
 
         return $this->render("posts/index", [
             "posts"=>$this->defaultEntity->findAll(),

@@ -1,11 +1,12 @@
 <?php
 
 namespace Controllers;
-require_once ('core/App/View.php');
 
 
 class AbstractController
 {
+
+
     protected object $defaultEntity;
 
     protected string $defaultEntityName;
@@ -14,6 +15,7 @@ class AbstractController
     {
         $this->defaultEntity = new $this->defaultEntityName();
     }
+
 
 
     public function render($template, $data){

@@ -1,7 +1,6 @@
 <?php
 
 namespace Entity;
-require_once ('core/Database/PDOMySQL.php');
 
 class AbstractEntity
 {

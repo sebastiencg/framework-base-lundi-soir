@@ -16,7 +16,7 @@ class Comment extends AbstractEntity
 
 
     public function findAllByPost(Post $post){
-        $query= $this->pdo->prepare('SELECT * FROM comments WHERE post_id=:post_id');
+        $query= $this->pdo->prepare("SELECT * FROM {$this->tableName} WHERE post_id=:post_id");
 
         $query->execute(["post_id"=>$post->getId()]);
         $query->setFetchMode(\PDO::FETCH_CLASS, get_class($this));
@@ -35,6 +35,14 @@ class Comment extends AbstractEntity
         $request->execute([
             "post_id"=> $comment->getPostId(),
             "content"=>$comment->getContent()
+        ]);
+    }
+
+    public function update(Comment $comment){
+        $requete = $this->pdo->prepare("UPDATE {$this->tableName} SET content = :content WHERE id = :id");
+        $requete->execute([
+            'id'=>$comment->getId(),
+            'content'=>$comment->getContent(),
         ]);
     }
 
