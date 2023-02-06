@@ -3,20 +3,17 @@
 namespace Controllers;
 
 use Attributes\DefaultEntity;
+use Attributes\UsesEntity;
 use Entity\AbstractEntity;
-use Entity\Post;
 
-#[DefaultEntity(entityName: Post::class)]
+
+#[UsesEntity(value: False)]
 class HomeController extends AbstractController
 {
+    protected $usesEntity = false;
 
     public function index()
     {
-
-
-
-
-
 
         return $this->render("home/index", ["pageTitle"=>"home"]);
     }

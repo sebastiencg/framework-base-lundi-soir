@@ -11,13 +11,13 @@ class Response
 
         if($params){
 
-            //[ "type"=>"post", "action"=>"show", "id"=>23]
+            //[ "type"=>"posts", "action"=>"show", "id"=>23]
 
             $url = "?";
 
             foreach ($params as $paramName=>$paramValue){
 
-                // type=post&
+                // type=posts&
                 $newParam = $paramName."=".$paramValue."&";
                 $url.=$newParam;
 

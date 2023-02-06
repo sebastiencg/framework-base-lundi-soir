@@ -6,20 +6,40 @@ namespace Controllers;
 use Attributes\DefaultEntity;
 use Attributes\TargetEntity;
 use Attributes\TargetRepository;
+use Attributes\UsesEntity;
 
 class AbstractController
 {
 
-
+    protected $usesEntity = true;
 
 
     protected $repository;
 
     public function __construct()
     {
+        $usesEntity = $this->resolveUsesEntity();
+        if($usesEntity){
+            $this->usesEntity = $usesEntity;
+        }
 
+        if($this->usesEntity){
+            $this->repository = $this->getRepository($this->resolveDefaultEntityName());
 
-        $this->repository = $this->getRepository($this->resolveDefaultEntityName());
+        }
+    }
+
+    protected function resolveUsesEntity(){
+        $reflect = new \ReflectionClass($this);  //$attributes
+
+        $attributes = $reflect->getAttributes(UsesEntity::class);
+
+        if(!empty($attributes[0])){
+            return $attributes[0]->getArguments()["value"];
+
+        }else{
+            return false;
+        }
     }
 
     protected function resolveDefaultEntityName(){
