@@ -14,13 +14,11 @@ class File
     private $name;
     private $target;
     private $mimeType;
-    private $acceptedMimeTypes = ["image/jpg", "image/png", "image/gif"];
+    private $acceptedMimeTypes = ["image/jpg","image/jpeg", "image/png", "image/gif"];
 
     public function __construct($index)
     {
         $this->uploadDirectory = dirname(__DIR__,2)."/images/";
-
-
 
         $this->fileData = $_FILES[$index];
 
@@ -28,14 +26,19 @@ class File
 
         $this->name = uniqid().".".$this->extension;
 
-
-
         $this->target = $this->uploadDirectory.$this->name;
 
+        $this->mimeType = $this->fileData["type"];
+
+        $this->tempFile = $this->fileData["tmp_name"];
     }
 
     public function upload(){
-        move_uploaded_file($this->tempFile, $this->target);
+
+
+            move_uploaded_file($this->tempFile, $this->target);
+
+
     }
 
     /**

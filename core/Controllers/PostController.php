@@ -104,7 +104,10 @@ class PostController extends AbstractController
         if($title && $content){
 
             $image = new File('postImage');
+
+
             if($image->isImage()){
+
                 $image->upload();
             }
 
@@ -114,11 +117,7 @@ class PostController extends AbstractController
             $post->setContent($content);
             $post->setImage($image->getName());
 
-
-
-
             $this->repository->insert($post);
-
 
             return $this->redirect();
 
@@ -133,7 +132,6 @@ class PostController extends AbstractController
             $id = $_GET['id'];
         }
         if($id){
-
 
 
             $post = $this->repository->findById($id);
