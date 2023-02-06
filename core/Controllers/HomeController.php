@@ -11,7 +11,7 @@ use Entity\AbstractEntity;
 class HomeController extends AbstractController
 {
 
-  //  protected $usesEntity = false;
+
 
 
     public function index()
