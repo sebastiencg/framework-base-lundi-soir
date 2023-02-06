@@ -7,10 +7,12 @@ use Attributes\UsesEntity;
 use Entity\AbstractEntity;
 
 
-#[UsesEntity(value: False)]
+#[UsesEntity(value: false)]
 class HomeController extends AbstractController
 {
-    protected $usesEntity = false;
+
+  //  protected $usesEntity = false;
+
 
     public function index()
     {

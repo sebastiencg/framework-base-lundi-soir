@@ -7,8 +7,10 @@ class Kernel
 
     public static function run(){
 
-        $type = "home";
+        $type = "film";
         $action = "index";
+
+
 
         if(!empty($_GET['type'])){ $type = $_GET['type']; };
         if(!empty($_GET['action'])){ $action = $_GET['action']; };
