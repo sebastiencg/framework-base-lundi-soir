@@ -10,7 +10,6 @@ class View
 
                extract($data);
 
-
                     ob_start();
                     require_once ("templates/${templateName}.html.php");
 

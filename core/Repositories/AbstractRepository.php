@@ -56,10 +56,14 @@ class AbstractRepository
 
 ///////////////////////////////////////////////////////
 
-    public function findAll()
+    public function findAll(string $precision=null)
     {
-
-        $request = $this->pdo->query("SELECT * FROM $this->tableName");
+        if($precision){
+            $request = $this->pdo->query("SELECT * FROM $this->tableName where typeRecette='$precision'");
+        }
+        else{
+            $request = $this->pdo->query("SELECT * FROM $this->tableName");
+        }
 
         $items = $request->fetchAll(\PDO::FETCH_CLASS,get_class($this->targetEntity));
         return $items;
@@ -78,9 +82,12 @@ class AbstractRepository
 
 
 
-    public function delete(object $object){
+    public function delete(int $id){
         $query = $this->pdo->prepare("DELETE FROM $this->tableName WHERE id = :id") ;
 
-        $query->execute(['id'=>$object->getId()]);
+        $reponse =$query->execute(['id'=>$id]);
+
+        return $reponse;
     }
+
 }
