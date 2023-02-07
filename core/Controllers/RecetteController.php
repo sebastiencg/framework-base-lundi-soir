@@ -4,6 +4,8 @@ namespace Controllers;
 
 use Attributes\DefaultEntity;
 use DateTime;
+use Entity\Commentaire;
+use Entity\CommentaireRecette;
 use Entity\Recette;
 
 #[DefaultEntity(entityName: Recette::class)]
@@ -35,8 +37,14 @@ class RecetteController extends AbstractController
             $id=$_GET['id'];
 
             $reponse=$this->repository->findById($id);
+
+            $commentaireRepository=$this->getRepository(entityName: Commentaire::class);
+
+            $commentaires =$commentaireRepository->findAllById($id);
+
             return $this->render("recettes/show",[
                 "reponse"=>$reponse,
+                "commentaires"=>$commentaires,
                 "titrePage"=> $reponse->getTitre()
             ]);
         }

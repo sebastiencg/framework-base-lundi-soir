@@ -17,6 +17,12 @@
         </div>
     </form>
 </div>
+<div class="container">
+    <?php
+     require_once ("templates/commentaires/commentaire.html.php");
+    ?>
+</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
