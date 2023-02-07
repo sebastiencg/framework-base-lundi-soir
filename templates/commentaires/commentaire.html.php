@@ -7,7 +7,7 @@
             <?= $commentaire->getCommentaire() ?>
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">plus</a>
             <ul class="dropdown-menu ">
-                <li><a class="dropdown-item" href="#">modifier</a></li>
+                <li><a class="dropdown-item" href="#g">modifier</a></li>
                 <li><a class="dropdown-item" href="#">supprimer</a></li>
             </ul>
         </div>
