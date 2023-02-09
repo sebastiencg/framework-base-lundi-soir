@@ -6,7 +6,7 @@
     <p><?= $reponse->getRecette() ?></p>
 </div>
 <div class="position-relative m-4">
-    <form method="post" action="create-newCommentaire.php">
+    <form method="post" action="?type=commentaire&action=create&recetteId=<?= $reponse->getId() ?>">
         <div class="input-group input-group-sm mb-3">
             <span class="input-group-text" id="inputGroup-sizing-sm">commentaire</span>
             <input type="text" name="commentaire" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">

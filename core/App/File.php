@@ -18,7 +18,9 @@ class File
 
     public function __construct($index)
     {
-        $this->uploadDirectory = dirname(__DIR__,2)."/images/";
+        $this->uploadDirectory = dirname(__DIR__,2)."images/";
+
+
 
         $this->fileData = $_FILES[$index];
 

@@ -46,4 +46,13 @@ class Commentaire extends AbstractEntity
     {
         $this->recetteId = $recetteId;
     }
+
+    /**
+     * @return int
+     */
+    public function getRecetteId(): int
+    {
+        return $this->recetteId;
+    }
+
 }

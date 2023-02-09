@@ -18,7 +18,7 @@ class RecetteRepository extends AbstractRepository
             "typeRecette"=>$typeRecette,
             "recette"=>$recette,
             "date"=>$date,
-            "heure"=>$heure
+            "heure"=>$heure,
         ]);
 
         return $requette;

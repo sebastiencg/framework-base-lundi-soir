@@ -18,6 +18,7 @@ class Recette extends AbstractEntity
 
     protected string $date;
     protected string $heure;
+    protected string $image;
 
     /**
      * @return int
@@ -105,6 +106,22 @@ class Recette extends AbstractEntity
     public function setHeure(string $heure): void
     {
         $this->heure = $heure;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage(string $image): void
+    {
+        $this->image = $image;
     }
 
 }

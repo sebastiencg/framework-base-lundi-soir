@@ -12,6 +12,10 @@
         </select>
     </div>
     <div class="mb-3">
+        <label for="image" class="form-label">illustration</label>
+        <input type="file" formenctype="multipart/form-data" class="form-control" name="image"  accept="image/png, image/jprg, image/gif" ">
+    </div>
+    <div class="mb-3">
         <label for="recette" class="form-label">les instructions</label>
         <textarea class="form-control" name="recette" rows="3"></textarea>
     </div>

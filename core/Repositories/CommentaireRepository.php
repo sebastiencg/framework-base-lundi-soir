@@ -18,4 +18,20 @@ class CommentaireRepository extends AbstractRepository
         $reponses=$requette->fetchAll();
         return $reponses;
     }
+
+
+    public function newCommentaire(int $id_recette, string $commentaire ){
+
+
+        $sql = "INSERT INTO `$this->tableName`(`commentaire`, `id_recette`) VALUES (:commentaire,:id_recette)";
+        $requette = $this->pdo->prepare($sql);
+        $requette->execute([
+            "commentaire" => $commentaire,
+            "id_recette" => $id_recette
+        ]);
+
+        return $requette;
+
+    }
+
 }

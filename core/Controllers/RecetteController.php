@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use App\File;
 use Attributes\DefaultEntity;
 use DateTime;
 use Entity\Commentaire;
@@ -95,6 +96,20 @@ class RecetteController extends AbstractController
             $date=$date->format("d/m/y");
             $heure=new DateTime();
             $heure=$heure->format("H:i");
+
+
+
+            /*$image = new File('image');
+
+
+            if($image->isImage()){
+
+                $image->upload();
+            }
+            $image->upload();
+
+            $image= $image->getName();*/
+
 
             $this->repository->newRecette($titre,$typeRecette,$recette,$date,$heure);
 

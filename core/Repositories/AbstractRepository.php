@@ -81,13 +81,14 @@ class AbstractRepository
     }
 
 
-
-    public function delete(int $id){
-        $query = $this->pdo->prepare("DELETE FROM $this->tableName WHERE id = :id") ;
-
-        $reponse =$query->execute(['id'=>$id]);
-
-        return $reponse;
+    public function delete($id){
+        $sql="DELETE FROM `$this->tableName` WHERE id=:id";
+        $requette=$this->pdo->prepare($sql);
+        $requette->execute([
+            "id"=>$id
+        ]);
+        return $requette;
     }
+
 
 }
