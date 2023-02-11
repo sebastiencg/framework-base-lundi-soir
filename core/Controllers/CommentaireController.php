@@ -23,9 +23,8 @@ class CommentaireController extends AbstractController
         if ($commentaire&&$recetteId){
 
             $this->repository->newCommentaire($recetteId,$commentaire);
-
+            $this->redirect(["type"=>"recette", "action"=>"show" ,"id"=>"$recetteId","info"=>"commentaire ajouté"]);
         }
-
         $this->redirect(["type"=>"recette", "action"=>"show" ,"id"=>"$recetteId"]);
 
     }
@@ -41,6 +40,6 @@ class CommentaireController extends AbstractController
         }
 
 
-        $this->redirect(["type"=>"recette", "action"=>"index" ]);
+        $this->redirect(["type"=>"recette", "action"=>"index","info"=>"commentaire supprimé","typeAlert"=>"warning" ]);
     }
 }

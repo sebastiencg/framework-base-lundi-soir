@@ -9,16 +9,18 @@ use Entity\Recette;
 #[TargetEntity(entityName: Recette::class)]
 class RecetteRepository extends AbstractRepository
 {
-    public function newRecette(string $titre,string $typeRecette,string $recette,string $date,string $heure){
+    public function newRecette(object $addRecette){
 
-        $sql="INSERT INTO `$this->tableName`(`titre`, `typeRecette`, `recette`,`date`,`heure`) VALUES (:titre,:typeRecette,:recette,:date,:heure)";
+        $sql="INSERT INTO `$this->tableName`(`titre`, `typeRecette`, `recette`,`date`,`heure`,`image`) VALUES (:titre,:typeRecette,:recette,:date,:heure,:image)";
         $requette=$this->pdo->prepare($sql);
+        echo $addRecette->getTitre();
         $requette->execute([
-            "titre"=>$titre,
-            "typeRecette"=>$typeRecette,
-            "recette"=>$recette,
-            "date"=>$date,
-            "heure"=>$heure,
+            "titre"=>$addRecette->getTitre(),
+            "typeRecette"=>$addRecette->getTypeRecette(),
+            "recette"=>$addRecette->getRecette(),
+            "date"=>$addRecette->getDate(),
+            "heure"=>$addRecette->getHeure(),
+            "image"=>$addRecette->getImage()
         ]);
 
         return $requette;

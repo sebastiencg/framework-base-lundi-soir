@@ -16,7 +16,7 @@
             <a class="nav-link active" aria-current="page" href="?type=home&action=index">home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="?type=recette&action=index">all recette</a>
+            <a class="nav-link active" aria-current="page" href="?type=recette&action=index">toutes nos recettes</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">nos recettes</a>
@@ -28,8 +28,25 @@
         <li class="nav-item">
             <a class="nav-link" href="?type=recette&action=create">ajoute ta recette</a>
         </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">compte</a>
+            <ul class="dropdown-menu bg-success-subtle">
+                <li><a class="dropdown-item" href="?type=user&action=create">créer un compte</a></li>
+                <li><a class="dropdown-item" href="?type=recette&action=plat">se connecter</a></li>
+            </ul>
+        </li>
     </ul>
 </div>
+<br>
+<?php
+$typeAlert="primary";
+if (!empty($_GET['typeAlert'])){$typeAlert=$_GET['typeAlert'];}
+if(\App\View::getInfo()) { ?>
+    <div class="alert alert-<?= $typeAlert ?> alert-dismissible fade show" role="alert">
+        <strong> <?= \App\View::getInfo() ?> </strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<?php } ?>
 <br>
 <div class="container">
     <?= $pageContent?>

@@ -2,7 +2,7 @@
 
 namespace Entity;
 
-class AbstractEntity
+abstract class AbstractEntity
 {
 
 

@@ -5,6 +5,11 @@ namespace App;
 
 class View
 {
+    public static function getInfo(){
+        if(!empty($_GET['info'])){
+            return $_GET['info'];
+        }
+    }
 
     public static function render($templateName, $data){
 

@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use App\File;
+use App\UploadFile;
 use Attributes\DefaultEntity;
 use DateTime;
 use Entity\Commentaire;
@@ -64,12 +65,13 @@ class RecetteController extends AbstractController
             if($reponse){
 
                  $this->repository->delete($id);
+                 $this->redirect([ "type"=>"recette", "action"=>"index","info"=>"recette supprimer","typeAlert"=>"warning"]);
             }
+            $this->redirect([ "type"=>"recette", "action"=>"index","info"=>"il y'a eu une erreur","typeAlert"=>"warning"]);
 
-            $this->redirect([ "type"=>"recette", "action"=>"index"]);
         }
 
-        $this->redirect([ "type"=>"recette", "action"=>"index"]);
+        $this->redirect([ "type"=>"recette", "action"=>"index","info"=>"il y'a eu une erreur","typeAlert"=>"warning"]);
 
     }
 
@@ -90,32 +92,29 @@ class RecetteController extends AbstractController
         if(!empty($_POST['recette'])){
             $recette=htmlspecialchars($_POST['recette']);
         }
-        if($titre&&$typeRecette&&$recette){
-
+        if(!empty($_FILES['image'])){
+            $image=new UploadFile('image');
+        }
+        if($titre&&$typeRecette&&$recette&&$image){
             $date=new DateTime();
             $date=$date->format("d/m/y");
             $heure=new DateTime();
             $heure=$heure->format("H:i");
 
+            $addRecette=new Recette();
+            $addRecette->setTitre($titre);
+            $addRecette->setTypeRecette($typeRecette);
+            $addRecette->setRecette($recette);
+            $addRecette->setDate($date);
+            $addRecette->setHeure($heure);
+            $addRecette->setImage($image->upload());
 
-
-            /*$image = new File('image');
-
-
-            if($image->isImage()){
-
-                $image->upload();
-            }
-            $image->upload();
-
-            $image= $image->getName();*/
-
-
-            $this->repository->newRecette($titre,$typeRecette,$recette,$date,$heure);
+            $this->repository->newRecette($addRecette);
 
             $this->redirect([
                "type"=>"recette",
-                "action"=>"index"
+                "action"=>"index",
+                "info"=>"recette enregistrer",
             ]);
         }
 
@@ -169,7 +168,7 @@ class RecetteController extends AbstractController
 
                 $this->repository->update($id,$titre,$typeRecette,$recette);
 
-                return $this->redirect(["type"=>"recette", "action"=>"index"]);
+                return $this->redirect(["type"=>"recette", "action"=>"index","info"=>"mise a jour effectuer"]);
             }
 
         }

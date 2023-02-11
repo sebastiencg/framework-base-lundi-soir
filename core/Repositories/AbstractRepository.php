@@ -6,7 +6,7 @@ use Attributes\Table;
 use Attributes\TargetEntity;
 use Database\PDOMySQL;
 
-class AbstractRepository
+abstract class AbstractRepository
 {
 
     protected $pdo;

@@ -8,7 +8,7 @@ use Attributes\TargetEntity;
 use Attributes\TargetRepository;
 use Attributes\UsesEntity;
 
-class AbstractController
+abstract class AbstractController
 {
 
     protected $usesEntity = true;
