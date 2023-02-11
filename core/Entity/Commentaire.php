@@ -39,7 +39,7 @@ class Commentaire extends AbstractEntity
         $this->commentaire = $commentaire;
     }
 
-    /**
+    /***
      * @param int $recetteId
      */
     public function setRecetteId(int $recetteId): void
