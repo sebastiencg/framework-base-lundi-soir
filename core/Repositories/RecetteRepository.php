@@ -13,7 +13,6 @@ class RecetteRepository extends AbstractRepository
 
         $sql="INSERT INTO `$this->tableName`(`titre`, `typeRecette`, `recette`,`date`,`heure`,`image`) VALUES (:titre,:typeRecette,:recette,:date,:heure,:image)";
         $requette=$this->pdo->prepare($sql);
-        echo $addRecette->getTitre();
         $requette->execute([
             "titre"=>$addRecette->getTitre(),
             "typeRecette"=>$addRecette->getTypeRecette(),

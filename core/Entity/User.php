@@ -2,17 +2,20 @@
 
 namespace Entity;
 
+use App\Secutity;
+use Attributes\Table;
 use Attributes\TargetEntity;
 use Attributes\TargetRepository;
 use Repositories\UserRepository;
 
+#[Table(name: "user")]
 #[TargetRepository(repositoryName: UserRepository::class)]
-class User extends AbstractEntity
+class User extends Secutity
 {
-    protected $id;
-    protected $username;
-    protected $mail;
-    protected $password;
+    protected int $id;
+    protected string $username;
+    protected string $mail;
+    protected string $password;
 
     /**
      * @return mixed
@@ -33,7 +36,7 @@ class User extends AbstractEntity
     /**
      * @param mixed $username
      */
-    public function setUsername($username): void
+    public function setUsername(string $username): void
     {
         $this->username = $username;
     }
@@ -49,7 +52,7 @@ class User extends AbstractEntity
     /**
      * @param mixed $mail
      */
-    public function setMail($mail): void
+    public function setMail(string $mail): void
     {
         $this->mail = $mail;
     }
@@ -65,9 +68,11 @@ class User extends AbstractEntity
     /**
      * @param mixed $password
      */
-    public function setPassword($password): void
+    public function setPassword(string $password): void
     {
-        $this->password = $password;
+        $this->password = $this->cryptage($password);
     }
+
+
 
 }
