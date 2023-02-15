@@ -4,7 +4,7 @@
             <div class="text-header">Login</div>
         </div>
         <div class="card-body">
-            <form action="?type=user&action=login" method="post">
+            <form action="?type=user&action=login"  method="post">
                 <div >
                     <label class="labelRegister" for="email">Email:</label>
                     <input required="" class="mail" name="email" id="email" type="email">
