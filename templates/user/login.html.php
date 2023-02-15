@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
     <div class="card ">
         <div class="card-header">
-            <div class="text-header">Login</div>
+            <div class="text-header">Login </div>
         </div>
         <div class="card-body">
             <form action="?type=user&action=login"  method="post">
