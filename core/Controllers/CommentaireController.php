@@ -32,7 +32,10 @@ class CommentaireController extends AbstractController
     public function remove(){
 
         $id=null;
-
+        $recetteId= null;
+        if(!empty($_GET['recetteId'])&&ctype_digit($_GET['recetteId'])){
+            $recetteId= $_GET['recetteId'];
+        }
         if(!empty($_GET['id'])&&ctype_digit($_GET['id'])){
             $id=$_GET['id'];
 
@@ -40,6 +43,6 @@ class CommentaireController extends AbstractController
         }
 
 
-        $this->redirect(["type"=>"recette", "action"=>"index","info"=>"commentaire supprimé","typeAlert"=>"warning" ]);
+        $this->redirect(["type"=>"recette", "action"=>"show","id"=>"$recetteId","info"=>"commentaire supprimé","typeAlert"=>"warning" ]);
     }
 }

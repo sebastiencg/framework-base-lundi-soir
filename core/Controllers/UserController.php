@@ -37,4 +37,10 @@ class UserController extends AbstractController
 
 
     }
+    public function login(){
+        $this->render("user/login",[
+            "titrePage"=>"login"
+
+        ]);
+    }
 }

@@ -32,7 +32,7 @@
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">compte</a>
             <ul class="dropdown-menu bg-success-subtle">
                 <li><a class="dropdown-item" href="?type=user&action=create">créer un compte</a></li>
-                <li><a class="dropdown-item" href="?type=recette&action=plat">se connecter</a></li>
+                <li><a class="dropdown-item" href="?type=user&action=login">se connecter</a></li>
             </ul>
         </li>
     </ul>
