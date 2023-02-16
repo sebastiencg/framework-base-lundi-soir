@@ -11,7 +11,7 @@ class RecetteRepository extends AbstractRepository
 {
     public function newRecette(object $addRecette){
 
-        $sql="INSERT INTO `$this->tableName`(`titre`, `typeRecette`, `recette`,`date`,`heure`,`image`) VALUES (:titre,:typeRecette,:recette,:date,:heure,:image)";
+        $sql="INSERT INTO `$this->tableName`(`titre`, `typeRecette`, `recette`,`date`,`heure`,`image`,`user_id`) VALUES (:titre,:typeRecette,:recette,:date,:heure,:image,:user_id)";
         $requette=$this->pdo->prepare($sql);
         $requette->execute([
             "titre"=>$addRecette->getTitre(),
@@ -19,7 +19,8 @@ class RecetteRepository extends AbstractRepository
             "recette"=>$addRecette->getRecette(),
             "date"=>$addRecette->getDate(),
             "heure"=>$addRecette->getHeure(),
-            "image"=>$addRecette->getImage()
+            "image"=>$addRecette->getImage(),
+            "user_id"=>$addRecette->getUserId()
         ]);
 
         return $requette;

@@ -70,10 +70,17 @@ class UserController extends AbstractController
             $password=htmlspecialchars($_POST['password']);
         }
         if ($mail&&$password){
-            $verification=$this->repository->findByMail($mail);
-            if ($verification){
-                if($verification->decryptage($password)){
-                    //6666666666666666666
+            $user=$this->repository->findByMail($mail);
+            if ($user){
+                if($user->decryptage($password)){
+                    $user->logIn();
+
+                    $this->redirect([
+                        "type"=>"recette",
+                        "action"=>"index",
+                        "info"=>"bienvenue ".$user->getUsername(),
+                        "typeAlert"=>"success"
+                    ]);
                 }
                 else{
                     $this->redirect([
@@ -99,5 +106,20 @@ class UserController extends AbstractController
             "titrePage"=>"login"
 
         ]);
+    }
+    public function deconnection()
+    {
+
+        $user = \App\Session::getUser();
+        if($user){
+            $user->logOut();
+        }
+        return $this->redirect([
+            "type"=>"user",
+            "action"=>"login",
+            "info"=>"deconnection",
+            "typeAlert"=>"warning"
+        ]);
+
     }
 }

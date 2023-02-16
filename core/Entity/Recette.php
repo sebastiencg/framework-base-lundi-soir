@@ -5,6 +5,7 @@ namespace Entity;
 use Attributes\Table;
 use Attributes\TargetRepository;
 use Repositories\RecetteRepository;
+use Repositories\UserRepository;
 
 #[Table(name: "recette")]
 #[TargetRepository(repositoryName: RecetteRepository::class)]
@@ -19,6 +20,8 @@ class Recette extends AbstractEntity
     protected string $date;
     protected string $heure;
     protected string $image;
+    protected int $user;
+    protected int $user_id;
 
     /**
      * @return int
@@ -122,6 +125,30 @@ class Recette extends AbstractEntity
     public function setImage(string $image): void
     {
         $this->image = $image;
+    }
+
+    /**
+     * @return int
+     */
+    public function getUserId(): int
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * @param int $user_id
+     */
+    public function setUserId(int $user_id): void
+    {
+        $this->user_id = $user_id;
+    }
+    public function setUser(User $user){
+        $this->setUserId($user->getId());
+    }
+
+    public function getUser(){
+        $userRepo = new UserRepository();
+        return $userRepo->findById($this->user_id);
     }
 
 }

@@ -83,6 +83,12 @@ class RecetteController extends AbstractController
 
         $recette=null;
 
+        if(!$this->getUser()){
+            return $this->redirect([
+                "info"=>"connecte toi d'abord"
+            ]);
+        }
+
         if(!empty($_POST['titre'])){
             $titre=htmlspecialchars($_POST['titre']);
         }
@@ -108,6 +114,8 @@ class RecetteController extends AbstractController
             $addRecette->setDate($date);
             $addRecette->setHeure($heure);
             $addRecette->setImage($image->upload());
+            $addRecette->setUser($this->getUser());
+
 
             $this->repository->newRecette($addRecette);
 

@@ -7,6 +7,9 @@ class Kernel
 
     public static function run(){
 
+        \App\Session::start();
+
+
         $type = "home";
         $action = "index";
 

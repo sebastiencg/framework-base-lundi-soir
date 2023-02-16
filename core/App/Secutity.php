@@ -15,6 +15,15 @@ abstract class Secutity implements userInterface
     public function decryptage($password){
         return password_verify($password,$this->password);
     }
+    public function logIn(){
+        \App\Session::add('user',[
+            'id'=>$this->id,
+            'username'=>$this->username
+        ]);
+    }
+    public function logOut(){
+        \App\Session::remove('user');
+    }
 
 
 }

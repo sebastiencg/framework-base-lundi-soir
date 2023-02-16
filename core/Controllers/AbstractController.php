@@ -69,4 +69,7 @@ abstract class AbstractController
     public function redirect(? array $params=null){
         return \App\Response::redirect($params);
     }
+    public function getUser(){
+        return \App\Session::getUser();
+    }
 }
