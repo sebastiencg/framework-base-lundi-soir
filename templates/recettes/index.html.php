@@ -9,7 +9,7 @@
         <h4><?= $reponse->getTypeRecette() ?></h4>
 
         <p><?= $reponse->getRecette() ?></p>
-        <p><strong>publié le <?= $reponse->getDate() ?> à <?= $reponse->getHeure() ?> par <?= $reponse->getUserId() ?></strong></p>
+        <p><strong>publié le <?= $reponse->getDate() ?> à <?= $reponse->getHeure() ?> </strong></p>
     </div>
 <?php endforeach;?>
 <?php

@@ -1,6 +1,7 @@
 <div class="position-relative m-4">
     <h3><?= $reponse->getTitre() ?></h3>
     <h4><?= $reponse->getTypeRecette() ?></h4>
+    <h6>publier le <?=$reponse->getDate() ?> à <?=$reponse->getHeure() ?> par <?=$user->getUsername() ?></h6>
     <button class="btn btn-danger btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">supprimer</button>
     <a class="btn btn-warning" href="?type=recette&action=change&id=<?= $reponse->getId() ?>"> modifier</a>
     <br>

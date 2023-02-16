@@ -28,6 +28,8 @@
         <li class="nav-item">
             <a class="nav-link" href="?type=recette&action=create">ajoute ta recette</a>
         </li>
+        <?php if(!isset($_SESSION['user'])){
+            ?>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">compte</a>
             <ul class="dropdown-menu bg-success-subtle">
@@ -35,6 +37,13 @@
                 <li><a class="dropdown-item" href="?type=user&action=login">se connecter</a></li>
             </ul>
         </li>
+        <?php } else{
+        ?>
+            <li class="nav-item">
+                <a class="nav-link" href="?type=recette&action=create">déconnection</a>
+            </li>
+        <?php }
+        ?>
     </ul>
 </div>
 <br>

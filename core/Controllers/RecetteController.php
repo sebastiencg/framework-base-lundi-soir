@@ -9,6 +9,7 @@ use DateTime;
 use Entity\Commentaire;
 use Entity\CommentaireRecette;
 use Entity\Recette;
+use Entity\User;
 
 #[DefaultEntity(entityName: Recette::class)]
 class RecetteController extends AbstractController
@@ -43,9 +44,13 @@ class RecetteController extends AbstractController
             $commentaireRepository=$this->getRepository(entityName: Commentaire::class);
 
             $commentaires =$commentaireRepository->findAllById($id);
+            $userRepository=$this->getRepository(entityName: User::class);
+
+            $user =$userRepository->findById($reponse->getUserId());
 
             return $this->render("recettes/show",[
                 "reponse"=>$reponse,
+                "user"=>$user,
                 "commentaires"=>$commentaires,
                 "titrePage"=> $reponse->getTitre()
             ]);
@@ -122,12 +127,13 @@ class RecetteController extends AbstractController
             $this->redirect([
                "type"=>"recette",
                 "action"=>"index",
-                "info"=>"recette enregistrer",
+                "info"=>"nouvelle recette",
+
             ]);
         }
 
         return $this->render("recettes/create",[
-           "TitrePage"=>"nouvelle recette"
+            "titrePage"=>"nouvelle recette"
         ]);
 
     }
