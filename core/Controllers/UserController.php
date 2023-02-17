@@ -107,7 +107,7 @@ class UserController extends AbstractController
 
         ]);
     }
-    public function deconnection()
+    public function logout()
     {
 
         $user = \App\Session::getUser();

@@ -48,6 +48,7 @@ class RecetteController extends AbstractController
 
             $user =$userRepository->findById($reponse->getUserId());
 
+
             return $this->render("recettes/show",[
                 "reponse"=>$reponse,
                 "user"=>$user,
@@ -61,11 +62,24 @@ class RecetteController extends AbstractController
     public function remove(){
 
         $id=null;
+        $user=null;
 
         if(!empty($_GET['id'])&&ctype_digit($_GET['id'])){
             $id=$_GET['id'];
 
             $reponse=$this->repository->findById($id);
+            $auteur =$reponse->getUserId();
+            if($this->getUser()){
+                $user =$this->getUser()->getId();
+            }
+            if($user!=$auteur){
+                return $this->redirect([
+                    "type"=>"recette",
+                    "action"=>"index",
+                    "info"=>"tu ne peux pas supprimer une recette que tu n'as pas rédiger",
+                    "typeAlert"=>"warning"
+                ]);
+            }
 
             if($reponse){
 
@@ -163,6 +177,18 @@ class RecetteController extends AbstractController
                 $id = $_GET['id'];
 
                 $reponse=$this->repository->findById($id);
+                $auteur =$reponse->getUserId();
+                if($this->getUser()){
+                    $user =$this->getUser()->getId();
+                }
+                if($user!=$auteur){
+                    return $this->redirect([
+                        "type"=>"recette",
+                        "action"=>"index",
+                        "info"=>"tu ne peux pas modifier une recette que tu n'as pas rédiger",
+                        "typeAlert"=>"warning"
+                    ]);
+                }
 
                 if($reponse){
 

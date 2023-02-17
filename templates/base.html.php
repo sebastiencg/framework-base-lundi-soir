@@ -8,6 +8,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="templates/style/style.css">
     <title><?= $titrePage ?></title>
+    <style>
+        .divUser{
+            display: flex;
+            justify-content: center;
+        }
+        .user{
+            color: #339494;}
+    </style>
 </head>
 <body>
 <div class="bg-success-subtle container-fluid">
@@ -40,12 +48,17 @@
         <?php } else{
         ?>
             <li class="nav-item">
-                <a class="nav-link" href="?type=recette&action=create">déconnection</a>
+                <a class="nav-link" href="?type=user&action=logout">déconnection</a>
             </li>
         <?php }
         ?>
     </ul>
 </div>
+<?php if(isset($_SESSION['user'])){ ?>
+    <div class="divUser">
+        <h2 class="fst-italic user"><?= $_SESSION['user']["username"]; ?></h2>
+    </div>
+<?php } ?>
 <br>
 <?php
 $typeAlert="primary";
