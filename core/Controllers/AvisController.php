@@ -22,13 +22,14 @@ class AvisController extends AbstractController
                 "info"=>"connecte toi d'abord"
             ]);
         }
+
         if (!empty($_GET['userId'])&&ctype_digit($_GET['userId'])){
             $userId=$_GET['userId'];
         }
         if (!empty($_GET['recetteId'])&&ctype_digit($_GET['recetteId'])){
             $recetteId=$_GET['recetteId'];
-
         }
+
         if ($recetteId && $userId){
 
             $verification=$this->repository->checkAvis($recetteId,$userId);
@@ -88,7 +89,7 @@ class AvisController extends AbstractController
             return $this->redirect([
                 "type"=>"recette",
                 "action"=>"show",
-                "id"=>$recetteId,
+                "id"=>$recetteId
             ]);
         }
     }

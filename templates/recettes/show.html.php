@@ -16,6 +16,21 @@
     <p><?= $reponse->getRecette() ?></p>
 </div>
 <div class="position-relative m-4">
+    <form method="post" action="?type=avis&action=create&recetteId=<?= $reponse->getId() ?>&userId=<?php if(isset($_SESSION['user'])){ echo $_SESSION['user']["id"]; } ?>">
+        <input class="inputAvis" type="checkbox" <?php if($avis){  ?> checked <?php } ?>   id="star" name="star">
+        <label class="labelAvis" for="star">
+            Etoile :
+            <svg class="svgAvis" viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+            </svg>
+            <button type="submit" class="btn btn-outline-info">envoyer</button>
+        </label>
+    </form>
+    <p>
+        <em><?= $reponse->getTitre() ?></em> a <?= $reponse->getCompteurLike() ?>  Etoiles
+    </p>
+</div>
+<div class="position-relative m-4">
     <form method="post" action="?type=commentaire&action=create&recetteId=<?= $reponse->getId() ?>">
         <div class="input-group input-group-sm mb-3">
             <span class="input-group-text" id="inputGroup-sizing-sm">commentaire</span>

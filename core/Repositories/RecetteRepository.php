@@ -36,4 +36,15 @@ class RecetteRepository extends AbstractRepository
         ]);
         return $requette;
     }
+    public function avis(int $id,int $compteurLike){
+
+        $sql="UPDATE `$this->tableName` SET `compteurLike`=:compteurLike WHERE id=:id";
+        $requette=$this->pdo->prepare($sql);
+        $requette->execute([
+            "id"=>$id,
+            "compteurLike"=>$compteurLike
+        ]);
+
+        return $requette;
+    }
 }

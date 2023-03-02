@@ -21,7 +21,6 @@ class Session
 
             $result = $_SESSION[$index];
         }
-
         return $result;
     }
     public static function remove($key){
@@ -35,12 +34,15 @@ class Session
 
     public static function getUser(){
         $user = \App\Session::get('user');
-        if(isset($user['id'])){
 
+        if(isset($user['id'])){
             $userRepo = new UserRepository();
             return $userRepo->findById($user['id']);
 
-        }else return false;
+        }
+        else {
+            return false;
+        }
 
     }
 }

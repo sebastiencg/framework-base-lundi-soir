@@ -6,6 +6,7 @@ use App\File;
 use App\UploadFile;
 use Attributes\DefaultEntity;
 use DateTime;
+use Entity\Avis;
 use Entity\Commentaire;
 use Entity\CommentaireRecette;
 use Entity\Recette;
@@ -36,24 +37,29 @@ class RecetteController extends AbstractController
     }
     public function show(){
         $id= null;
+        $avis=null;
         if(!empty($_GET['id'])&&ctype_digit($_GET['id'])){
             $id=$_GET['id'];
 
             $reponse=$this->repository->findById($id);
 
             $commentaireRepository=$this->getRepository(entityName: Commentaire::class);
-
             $commentaires =$commentaireRepository->findAllById($id);
-            $userRepository=$this->getRepository(entityName: User::class);
 
+            $userRepository=$this->getRepository(entityName: User::class);
             $user =$userRepository->findById($reponse->getUserId());
 
+            if(isset($_SESSION['user'])){
+                $avisRepository=$this->getRepository(entityName: Avis::class);
+                $avis=$avisRepository->checkAvis($id ,$_SESSION['user']["id"]);
+            }
 
             return $this->render("recettes/show",[
                 "reponse"=>$reponse,
                 "user"=>$user,
                 "commentaires"=>$commentaires,
-                "titrePage"=> $reponse->getTitre()
+                "titrePage"=> $reponse->getTitre(),
+                "avis"=>$avis
             ]);
         }
         return $this->redirect([ "type"=>"recette", "action"=>"index"]);
@@ -208,7 +214,13 @@ class RecetteController extends AbstractController
 
                 $this->repository->update($id,$titre,$typeRecette,$recette);
 
-                return $this->redirect(["type"=>"recette", "action"=>"index","info"=>"mise a jour effectuer"]);
+                return $this->redirect([
+                    "type"=>"recette",
+                    "action"=>"show",
+                    "id"=>$id,
+                    "info"=>"recette modifiée avec succès",
+                    "typeAlert"=>"success"
+                ]);
             }
 
         }

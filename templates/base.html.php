@@ -14,11 +14,42 @@
             justify-content: center;
         }
         .user{
-            color: #339494;}
+            color: #339494;
+        }
+        .inputAvis[type="checkbox"] {
+            display: none;
+        }
+
+        .labelAvis .svgAvis {
+            width: 25px;
+            height: 25px;
+            fill: none;
+            stroke: #000;
+            stroke-width: 2px;
+        }
+
+        .inputAvis[type="checkbox"]:checked + label svg {
+            fill: #ffea00;
+            animation: pop_42 0.5s ease-out;
+        }
+
+        @keyframes pop_42 {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.5);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
     </style>
 </head>
 <body>
-<div class="bg-success-subtle container-fluid">
+<div class="bg-success-subtle container-fluid" >
     <ul class="nav justify-content-end">
         <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="?type=home&action=index">home</a>

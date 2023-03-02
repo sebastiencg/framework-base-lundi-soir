@@ -22,6 +22,7 @@ class Recette extends AbstractEntity
     protected string $image;
     protected int $user;
     protected int $user_id;
+    protected int $compteurLike;
 
     /**
      * @return int
@@ -149,6 +150,22 @@ class Recette extends AbstractEntity
     public function getUser(){
         $userRepo = new UserRepository();
         return $userRepo->findById($this->user_id);
+    }
+
+    /**
+     * @return int
+     */
+    public function getCompteurLike(): int
+    {
+        return $this->compteurLike;
+    }
+
+    /**
+     * @param int $compteurLike
+     */
+    public function setCompteurLike(int $compteurLike): void
+    {
+        $this->compteurLike = $compteurLike;
     }
 
 }
