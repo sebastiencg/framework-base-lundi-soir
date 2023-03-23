@@ -13,7 +13,7 @@
     </div>
     <div class="mb-3">
         <label for="image" class="form-label">illustration</label>
-        <input type="file"  class="form-control" name="image"  accept="image/png, image/jprg, image/gif" ">
+        <input type="file"  class="form-control" name="image"  accept="image/png, image/jpeg, image/gif" ">
     </div>
     <div class="mb-3">
         <label for="recette" class="form-label">les instructions</label>

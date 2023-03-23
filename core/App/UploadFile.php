@@ -6,12 +6,10 @@ class UploadFile
 {
     private $nameImage;
     private $image;
-
     private $nomFichier;
     private $typeFichier;
     private $tailleFichier;
     public function __construct($photo){
-
 
         if(!empty($photo)){
 

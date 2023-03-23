@@ -6,13 +6,19 @@ use Entity\Avis;
 use Entity\Recette;
 
 #[DefaultEntity(entityName: Avis::class)]
-class AvisController extends AbstractController
-{
+class AvisController extends AbstractController{
     public function create(){
 
         $userId=null;
         $recetteId=null;
         $star=null;
+
+        if (!empty($_GET['userId'])&&ctype_digit($_GET['userId'])){
+            $userId=$_GET['userId'];
+        }
+        if (!empty($_GET['recetteId'])&&ctype_digit($_GET['recetteId'])){
+            $recetteId=$_GET['recetteId'];
+        }
 
         if(!$this->getUser()){
             return $this->redirect([
@@ -21,13 +27,6 @@ class AvisController extends AbstractController
                 "id"=>$recetteId,
                 "info"=>"connecte toi d'abord"
             ]);
-        }
-
-        if (!empty($_GET['userId'])&&ctype_digit($_GET['userId'])){
-            $userId=$_GET['userId'];
-        }
-        if (!empty($_GET['recetteId'])&&ctype_digit($_GET['recetteId'])){
-            $recetteId=$_GET['recetteId'];
         }
 
         if ($recetteId && $userId){
